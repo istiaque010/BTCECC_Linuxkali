@@ -59,7 +59,22 @@ $ sudo apt-get update
 $ sudo apt-get install libdb4.8-dev libdb4.8++-dev
 ```
 
+If you have problem with Berkeley DB 4.8 installation,
+After cloning the repository, execute `install_db4.sh` script that is located in `./contrib`.
 
+```bash
+$ ./contrib/install_db4.sh `pwd`
+```
+
+After that, Write the path of BDB when you build the project, as follows
+
+```bash
+$ ./autogen.sh
+$ export BDB_PREFIX=$(pwd)
+$ ./configure BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" BDB_CFLAGS="-I${BDB_PREFIX}/include" --enable-cxx --disable-shared
+$ make
+$
+```
 
 ### 1.4 Install of qt-wallet
 
